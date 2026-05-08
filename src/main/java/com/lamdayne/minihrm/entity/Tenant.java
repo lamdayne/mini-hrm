@@ -29,16 +29,16 @@ public class Tenant extends BaseEntity {
 
     private BigDecimal standardHoursPerDay;
 
-    @OneToMany(mappedBy = "tenant")
+    @OneToMany(mappedBy = "tenant", fetch = FetchType.LAZY)
     private List<Department> departments;
 
-    @OneToMany(mappedBy = "tenant")
+    @OneToMany(mappedBy = "tenant", fetch = FetchType.LAZY)
     private List<Position> positions;
 
-    @OneToMany(mappedBy = "tenant")
+    @OneToMany(mappedBy = "tenant", fetch = FetchType.LAZY)
     private List<Employee> employees;
 
-    @OneToMany(mappedBy = "tenant")
+    @OneToMany(mappedBy = "tenant", fetch = FetchType.LAZY)
     private List<User> users;
 
 }
