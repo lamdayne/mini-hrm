@@ -29,15 +29,12 @@ public class User extends BaseEntity {
 
     private Instant lastLoginAt;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "tenant_id")
     private Tenant tenant;
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "employee_id")
     private Employee employee;
-
-    @OneToMany(mappedBy = "user")
-    private List<EmployeeStatusHistory> employeeStatusHistory;
 
 }
