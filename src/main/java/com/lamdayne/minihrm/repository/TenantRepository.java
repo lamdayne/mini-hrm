@@ -6,4 +6,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface TenantRepository extends JpaRepository<Tenant, Long> {
+    boolean existsByTaxCode(String taxCode);
+
+    boolean existsByRepresentativeEmail(String representativeEmail);
 }
