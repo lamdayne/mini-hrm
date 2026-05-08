@@ -3,6 +3,8 @@ package com.lamdayne.minihrm.entity;
 import com.lamdayne.minihrm.enums.TenantStatus;
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.type.SqlTypes;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -24,10 +26,14 @@ public class Tenant extends BaseEntity {
 
     private String phone;
 
-    @Enumerated(EnumType.STRING)
-    private TenantStatus status;
+    @Builder.Default
+    @Enumerated(EnumType.STRING) // dùng tên enum
+    @JdbcTypeCode(SqlTypes.NAMED_ENUM) //
+    @Column(columnDefinition = "tenant_status") // cột này trong db kiểu tenant_status
+    private TenantStatus status = TenantStatus.PENDING;
 
-    private BigDecimal standardHoursPerDay;
+    @Builder.Default
+    private BigDecimal standardHoursPerDay = BigDecimal.valueOf(8);
 
     @OneToMany(mappedBy = "tenant", fetch = FetchType.LAZY)
     private List<Department> departments;
