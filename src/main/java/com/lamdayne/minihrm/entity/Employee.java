@@ -4,6 +4,8 @@ import com.lamdayne.minihrm.enums.EmployeeStatus;
 import com.lamdayne.minihrm.enums.Gender;
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.type.SqlTypes;
 
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -18,17 +20,22 @@ import java.util.List;
 @Builder
 public class Employee extends BaseEntity {
 
+    @Column(nullable = false, length = 50)
     private String employeeCode;
 
+    @Column(nullable = false)
     private String fullName;
 
     private LocalDate dateOfBirth;
 
     @Enumerated(EnumType.STRING)
+    @JdbcTypeCode(SqlTypes.NAMED_ENUM)
+    @Column(columnDefinition = "gender")
     private Gender gender;
 
     private String email;
 
+    @Column(length = 20)
     private String phone;
 
     private String address;
@@ -36,10 +43,12 @@ public class Employee extends BaseEntity {
     private LocalDate startDate;
 
     @Enumerated(EnumType.STRING)
+    @JdbcTypeCode(SqlTypes.NAMED_ENUM)
+    @Column(columnDefinition = "employee_status", nullable = false)
     private EmployeeStatus status;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "tenant_id")
+    @JoinColumn(name = "tenant_id", nullable = false)
     private Tenant tenant;
 
     @ManyToOne(fetch = FetchType.LAZY)
