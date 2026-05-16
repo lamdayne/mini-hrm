@@ -18,12 +18,16 @@ import java.util.List;
 @Builder
 public class Tenant extends BaseEntity {
 
+    @Column(nullable = false)
     private String name;
 
+    @Column(nullable = false, unique = true, length = 20)
     private String taxCode;
 
+    @Column(nullable = false, unique = true)
     private String representativeEmail;
 
+    @Column(nullable = false, length = 20)
     private String phone;
 
     @Builder.Default

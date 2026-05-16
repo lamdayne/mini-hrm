@@ -14,12 +14,13 @@ import java.util.List;
 @Builder
 public class Position extends BaseEntity {
 
+    @Column(nullable = false, length = 100)
     private String name;
 
     private String description;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "tenant_id")
+    @JoinColumn(name = "tenant_id", nullable = false)
     private Tenant tenant;
 
     @OneToMany(mappedBy = "position", fetch = FetchType.LAZY)
