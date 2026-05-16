@@ -14,11 +14,11 @@ public enum ErrorCode {
     TENANT_EMAIL_REQUIRED(2004, "Tenant email can not blank", HttpStatus.BAD_REQUEST),
     TENANT_PHONE_REQUIRED(2005, "Tenant phone can not blank", HttpStatus.BAD_REQUEST),
     TENANT_PHONE_INVALID(2006, "Tenant phone must be less than 20 character", HttpStatus.BAD_REQUEST),
-    TENANT_TAX_CODE_EXISTS(2007, "Tenant tax code already exists", HttpStatus.BAD_REQUEST),
-    TENANT_EMAIL_EXISTS(2008, "Tenant email already exists", HttpStatus.BAD_REQUEST),
+    TENANT_TAX_CODE_EXISTS(2007, "Tenant tax code already exists", HttpStatus.CONFLICT),
+    TENANT_EMAIL_EXISTS(2008, "Tenant email already exists", HttpStatus.CONFLICT),
     ;
 
-    private int status;
+    private int code;
     private String message;
     private HttpStatus httpStatus;
 
