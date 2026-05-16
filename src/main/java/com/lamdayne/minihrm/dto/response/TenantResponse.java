@@ -20,5 +20,4 @@ public class TenantResponse implements Serializable {
     private BigDecimal standardHoursPerDay;
     private Instant createdAt;
     private Instant updatedAt;
-    private Instant deletedAt;
 }
